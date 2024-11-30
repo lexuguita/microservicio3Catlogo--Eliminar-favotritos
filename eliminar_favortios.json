@@ -1,0 +1,79 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Eliminación de Favoritos",
+    "description": "Permite al usuario eliminar un título de su lista de favoritos.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9004"
+    }
+  ],
+  "paths": {
+    "/catalogo/favoritos/{usuarioId}/{contenidoId}": {
+      "delete": {
+        "summary": "Eliminación de favoritos",
+        "description": "Permite al usuario eliminar un título de su lista de favoritos.",
+        "parameters": [
+          {
+            "name": "usuarioId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Identificador único del usuario."
+          },
+          {
+            "name": "contenidoId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID del contenido a eliminar de favoritos."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Título eliminado de favoritos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "usuarioId": {
+                      "type": "string"
+                    },
+                    "contenidoId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contenido no encontrado en la lista de favoritos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "detail": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
